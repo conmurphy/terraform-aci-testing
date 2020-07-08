@@ -28,4 +28,4 @@ resource "aci_subnet" "demosubnet" {
   description                         = "This subject is created by Terraform"
 }
 
-variable "apic_url" {}
+variable "url" {}
