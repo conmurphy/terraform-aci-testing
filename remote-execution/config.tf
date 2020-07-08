@@ -29,3 +29,5 @@ resource "aci_subnet" "demosubnet" {
 }
 
 variable "url" {}
+variable "username" {}
+variable "password" {}
