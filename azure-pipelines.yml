@@ -1,33 +1,37 @@
-variables:
+variables: 
     project: shared-resources
-  
-  stages: 
-    - stage: validate
-      displayName: Validate
-      variables:
-        - group: shared
-      jobs:
-        - template: pipelines/jobs/terraform/validate.yml
-  
-    - stage: plan_dev
-      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-      displayName: Plan for development
-      variables:
-        - group: shared
-  
-      jobs:
-        - template: pipelines/jobs/terraform/plan.yml
-          parameters:
+stages: 
+    - 
+    displayName: Validate
+    jobs: 
+        - 
+        template: pipelines/jobs/terraform/validate.yml
+    stage: validate
+    variables: 
+        - 
+        group: shared
+    - 
+    condition: "and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))"
+    displayName: "Plan for development"
+    jobs: 
+        - 
+        parameters: 
             workspace: dev
-  
-    - stage: apply_dev
-      displayName: Apply for development
-      variables:
-        - group: shared
-  
-      jobs:
-        - template: pipelines/jobs/terraform/apply.yml
-          parameters:
-            project: ${{ variables.project }}
+        template: pipelines/jobs/terraform/plan.yml
+    stage: plan_dev
+    variables: 
+        - 
+        group: shared
+    - 
+    displayName: "Apply for development"
+    jobs: 
+        - 
+        parameters: 
+            project: "${{ variables.project }}"
             workspace: dev
-  
+        template: pipelines/jobs/terraform/apply.yml
+    stage: apply_dev
+    variables: 
+        - 
+        group: shared
+
