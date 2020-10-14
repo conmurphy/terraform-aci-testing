@@ -12,7 +12,8 @@ jobs:
         deploy:
           steps:
             - template: ../../steps/terraform/install.yml
-
+            - template: ../../steps/terraform/init.yml
+            
             - bash: |
                 $TERRAFORM_BINARY apply \
                   -input=false \
