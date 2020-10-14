@@ -6,6 +6,8 @@ jobs:
   - job: plan_terraform
     displayName: Create Terraform plan
     pool: terraform_aci_laptop
+    variables:
+        - group: shared
     steps:
       - template: ../../steps/terraform/install.yml
 
@@ -38,6 +40,8 @@ jobs:
           esac
         displayName: Create Terraform plan
         workingDirectory: "$(Build.SourcesDirectory)/terraform"
+        env:
+            TF_VAR_apic_password: $(apic_password)
          
       - task: ArchiveFiles@2
         displayName: Compress Terraform directory

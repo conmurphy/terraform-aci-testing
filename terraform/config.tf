@@ -1,9 +1,9 @@
 #configure provider with your cisco aci credentials.
 provider "aci" {
   # cisco-aci user name
-  username = "${var.username}"
+  username = "${var.apic_username}"
   # cisco-aci password
-  password = "${var.password}"
+  password = "${var.apic_password}"
   # cisco-aci url
   url      =  "${var.apic_url}"
   insecure = true

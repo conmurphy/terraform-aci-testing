@@ -1,3 +1,3 @@
 variable "apic_url" {}
-variable "username" {}
-variable "password" {}
+variable "apic_username" {}
+variable "apic_password" {}
