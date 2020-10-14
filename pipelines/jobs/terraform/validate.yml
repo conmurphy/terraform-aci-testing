@@ -1,7 +1,7 @@
 jobs:
   - job: validate_terraform
     displayName: Validate Terraform
-    pool: azure_devops_terraform_aci
+    pool: terraform_aci_laptop
     steps:
       - template: ../../steps/terraform/install.yml
 
