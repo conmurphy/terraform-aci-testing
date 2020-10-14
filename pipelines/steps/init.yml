@@ -1,0 +1,11 @@
+parameters:
+  workingDirectory: "$(Build.SourcesDirectory)/terraform"
+
+steps:
+  - bash: |
+      $TERRAFORM_BINARY init \
+        -input=false \
+    displayName: Initialize Terraform
+    workingDirectory: ${{ parameters.workingDirectory }}
+    env:
+      TF_IN_AUTOMATION: "true"

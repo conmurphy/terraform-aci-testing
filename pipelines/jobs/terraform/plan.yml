@@ -1,0 +1,50 @@
+parameters:
+  workspace: ""
+  tf_vars: {}
+
+jobs:
+  - job: plan_terraform
+    displayName: Create Terraform plan
+    pool: azure_devops_terraform_aci
+    steps:
+      - template: ../../steps/terraform/install.yml
+
+      - template: ../../steps/terraform/init.yml
+
+      #- template: ../../steps/terraform/workspace-select.yml
+      #  parameters:
+      #    workspace: ${{ parameters.workspace }}
+
+      - bash: |
+          $TERRAFORM_BINARY plan \
+            -out=${{ parameters.workspace }}.tfplan \
+            -input=false \
+            -detailed-exitcode \
+            -no-color | tee plan.txt
+          # Check if plan has changes
+          case ${PIPESTATUS[0]} in
+            0)
+              echo "##vso[task.logissue type=warning]Environment \"${{ parameters.workspace }}\": Plan has no changes"
+              exit 0
+              ;;
+            1)
+              echo "An error occurred" >&2
+              exit 1
+              ;;
+            2)
+              # Terraform plan had changes
+              echo "##vso[task.logissue type=warning]Environment \"${{ parameters.workspace }}\": $(grep "Plan:" plan.txt) Check logs for more information."
+              exit 0
+          esac
+        displayName: Create Terraform plan
+        workingDirectory: "$(Build.SourcesDirectory)/terraform"
+         
+      - task: ArchiveFiles@2
+        displayName: Compress Terraform directory
+        inputs:
+          rootFolderOrFile: "$(Build.SourcesDirectory)/terraform"
+          archiveFile: "$(Build.ArtifactStagingDirectory)/terraform.zip"
+
+      - publish: "$(Build.ArtifactStagingDirectory)/terraform.zip"
+        displayName: Publish Terraform artifact
+        artifact: terraform-plan-${{ parameters.workspace }}
