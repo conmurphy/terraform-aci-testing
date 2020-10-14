@@ -1,3 +1,7 @@
+
+variables:
+    project: terraform_aci_demo
+
 stages:
   - stage: validate
     displayName: Validate
@@ -25,4 +29,5 @@ stages:
     jobs:
         - template: pipelines/jobs/terraform/apply.yml
           parameters:
+              project: ${{ variables.project }}
               workspace: dev

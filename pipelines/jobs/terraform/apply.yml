@@ -5,7 +5,7 @@ parameters:
 jobs:
   - deployment: apply_terraform
     displayName: Apply Terraform
-    #environment: ${{ parameters.project }}-${{ parameters.workspace }}
+    environment: ${{ parameters.project }}-${{ parameters.workspace }}
     pool: terraform_aci_laptop
     strategy:
       runOnce:
