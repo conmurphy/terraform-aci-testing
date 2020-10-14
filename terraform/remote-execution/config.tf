@@ -28,6 +28,7 @@ resource "aci_subnet" "demosubnet" {
   description                         = "This subject is created by Terraform"
 }
 
-variable "url" {}
-variable "username" {}
-variable "password" {}
+resource "aci_tenant" "conmurph_terraform_import" {
+  # (resource arguments)
+}
+
