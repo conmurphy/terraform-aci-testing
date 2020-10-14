@@ -21,13 +21,13 @@ stages:
           parameters:
               workspace: dev
     
-  - stage: apply_dev
-    displayName: Apply for development
-    variables:
-        - group: shared
+  #- stage: apply_dev
+  #  displayName: Apply for development
+  #  variables:
+  #      - group: shared
     
-    jobs:
-        - template: pipelines/jobs/terraform/apply.yml
-          parameters:
-              project: ${{ variables.project }}
-              workspace: dev
+  #  jobs:
+  #      - template: pipelines/jobs/terraform/apply.yml
+  #        parameters:
+  #            project: ${{ variables.project }}
+  #            workspace: dev
