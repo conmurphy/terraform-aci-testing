@@ -15,7 +15,22 @@ jobs:
       - bash: |
           $TERRAFORM_BINARY plan \
             -input=false \
-            -detailed-exitcode 
+            -detailed-exitcode | tee plan.txt
+            # Check if plan has changes
+            case ${PIPESTATUS[0]} in
+              0)
+                echo "##vso[task.logissue type=warning]Environment \"${{ parameters.workspace }}\": Plan has no changes"
+                exit 0
+                ;;
+              1)
+                echo "An error occurred" >&2
+                exit 1
+                ;;
+              2)
+                # Terraform plan had changes
+                echo "##vso[task.logissue type=warning]Environment \"${{ parameters.workspace }}\": $(grep "Plan:" plan.txt) Check logs for more information."
+                exit 0
+            esac
         displayName: Create Terraform plan
         workingDirectory: "$(Build.SourcesDirectory)/terraform"
         env:
