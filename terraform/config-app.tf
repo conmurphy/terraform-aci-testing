@@ -1,4 +1,4 @@
-resource "aci_application_profile" "terraform_app" {
+/*resource "aci_application_profile" "terraform_app" {
   tenant_dn = "${aci_tenant.myTenant.id}"
   name       = "demo_app_profile"
 }
@@ -58,3 +58,4 @@ resource "aci_application_epg" "application_epg3" {
     prio                            = "unspecified"
     shutdown                    = "no"
   }
+*/
