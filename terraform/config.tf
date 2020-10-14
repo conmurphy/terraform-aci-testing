@@ -20,13 +20,13 @@ provider "aci" {
 #}
 
 
-resource "aci_tenant" "my_terraform_tenant" {
+/*resource "aci_tenant" "my_terraform_tenant" {
   name        = "my_terraform_tenant"    
   description = "This tenant is created by the Terraform ACI provider"
-}
+}*/
 
 resource "aci_tenant" "myTenant" {
-  name        = "myTenant"    
+  name        = "conmurph_azure_devops"    
 }
 
 resource "aci_bridge_domain" "bd_for_subnet" {
