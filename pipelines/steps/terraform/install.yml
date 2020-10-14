@@ -3,6 +3,8 @@ steps:
       TERRAFORM_BIN_DIR=$(mktemp -d)
       cd $TERRAFORM_BIN_DIR
       curl -fsSLO https://releases.hashicorp.com/terraform/$(TERRAFORM_VERSION)/terraform_$(TERRAFORM_VERSION)_linux_amd64.zip
+      apt-get update
+      apt-get install zip unzip
       unzip terraform_$(TERRAFORM_VERSION)_linux_amd64.zip -d $TERRAFORM_BIN_DIR
       TERRAFORM_BINARY=${TERRAFORM_BIN_DIR}/terraform
       $TERRAFORM_BINARY --version
