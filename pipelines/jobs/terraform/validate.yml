@@ -8,6 +8,5 @@ jobs:
       - bash: |
           # Validate Terraform scripts
           $TERRAFORM_BINARY init -backend=false
-          $TERRAFORM_BINARY validate
         displayName: Validate Terraform scripts
         workingDirectory: "$(Build.SourcesDirectory)/terraform"
