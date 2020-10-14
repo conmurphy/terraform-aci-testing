@@ -20,3 +20,5 @@ jobs:
                   -auto-approve 
               displayName: Apply Terraform plan
               workingDirectory: "$(Build.SourcesDirectory)/terraform"
+              env:
+                TF_VAR_apic_password: $(apic_password)
