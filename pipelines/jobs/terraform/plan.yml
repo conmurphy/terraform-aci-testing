@@ -14,10 +14,8 @@ jobs:
 
       - bash: |
           $TERRAFORM_BINARY plan \
-            -out=${{ parameters.workspace }}.tfplan \
             -input=false \
-            -detailed-exitcode \
-            -no-color 
+            -detailed-exitcode 
         displayName: Create Terraform plan
         workingDirectory: "$(Build.SourcesDirectory)/terraform"
         env:
