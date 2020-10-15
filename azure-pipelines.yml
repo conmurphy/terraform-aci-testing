@@ -3,13 +3,6 @@ variables:
     project: terraform_aci_demo
 
 stages:
-  - stage: validate
-    displayName: Validate
-    variables:
-        - group: shared
-    jobs:
-        - template: pipelines/jobs/terraform/validate.yml
-
   - stage: plan_dev
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     displayName: Plan for development
