@@ -1,9 +1,6 @@
 parameters:
   workingDirectory: "$(Build.SourcesDirectory)/terraform"
 
-variables:
-  - group: shared
-  
 steps:
   - bash: |
       $TERRAFORM_BINARY init \
