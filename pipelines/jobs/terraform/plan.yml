@@ -11,7 +11,7 @@ jobs:
     steps:
       - template: ../../steps/terraform/install.yml
       - template: ../../steps/terraform/init.yml
-
+      # case will check the exit code to see if anything has changed. More details here: https://www.terraform.io/docs/commands/plan.html#detailed-exitcode
       - bash: |
           $TERRAFORM_BINARY plan \
             -input=false \
