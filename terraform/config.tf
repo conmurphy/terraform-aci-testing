@@ -47,7 +47,7 @@ resource "aci_subnet" "demosubnet" {
   parent_dn                    = "${aci_bridge_domain.bd_for_subnet.id}"
   ip                                  = "172.16.1.1/24"
   scope                               = "private"
-  description                         = "This subject is created by Terraform"
+  description                         = "This subject is created by Terraform v2"
 }
 
 
