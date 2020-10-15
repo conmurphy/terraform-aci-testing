@@ -5,7 +5,14 @@ steps:
   - bash: |
       $TERRAFORM_BINARY init \
         -input=false \
+        --backend-config="access_key=${AWS_ACCESS_KEY}" --backend-config="secret_key=${AWS_SECRET_KEY}"
     displayName: Initialize Terraform
     workingDirectory: ${{ parameters.workingDirectory }}
+    variables:
+      - group: shared
     env:
       TF_IN_AUTOMATION: "true"
+      AWS_ACCESS_KEY: $(AWS_ACCESS_KEY)
+      AWS_SECRET_KEY: $(AWS_SECRET_KEY)
+
+      

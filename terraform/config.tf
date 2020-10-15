@@ -1,3 +1,11 @@
+terraform {
+  backend "s3" {
+    bucket = "azure-devops-terraform-aci-demo-s3-bucket"
+    key    = "terraform.tfstate"
+    region = "eu-central-1"
+  }
+}
+
 #configure provider with your cisco aci credentials.
 provider "aci" {
   # cisco-aci user name
