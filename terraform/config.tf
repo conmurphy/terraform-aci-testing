@@ -14,22 +14,6 @@ provider "aci" {
   insecure = true
 }
 
-
-# data "aci_tenant" "my_shared_tenant" {
-#  name = "my_shared_tenant"
-#}
-
-#data "aci_bridge_domain" "my_shared_bd" {
-#  tenant_dn   = "${data.aci_tenant.my_shared_tenant.id}"
-#  name        = "my_shared_bd"
-#}
-
-
-/*resource "aci_tenant" "my_terraform_tenant" {
-  name        = "my_terraform_tenant"    
-  description = "This tenant is created by the Terraform ACI provider"
-}*/
-
 resource "aci_tenant" "myTenant" {
   name        = "conmurph_azure_devops"    
 }
@@ -44,7 +28,7 @@ resource "aci_subnet" "demosubnet" {
   parent_dn                    = "${aci_bridge_domain.bd_for_subnet.id}"
   ip                                  = "172.16.1.1/24"
   scope                               = "private"
-  description                         = "This subject is created by Terraform"
+  description                         = "This subject is created by Terraform v2"
 }
 
 
