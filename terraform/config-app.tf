@@ -1,39 +1,17 @@
-/*resource "aci_application_profile" "terraform_app" {
+resource "aci_application_profile" "myWebsite" {
   tenant_dn = "${aci_tenant.myTenant.id}"
-  name       = "demo_app_profile"
+  name       = "my_website"
 }
 
-
-resource "aci_application_epg" "my_web_epg" {
-    application_profile_dn  = "${aci_application_profile.terraform_app.id}"
-    name                            = "db_epg"
-    description                   = "%s"
-    annotation                    = "tag_epg"
-    exception_tag               = "0"
+resource "aci_application_epg" "web" {
+    application_profile_dn  = "${aci_application_profile.myWebsite.id}"
+    name                            = "web"
+    description                   = "this is the web epg created by terraform"
     flood_on_encap            = "disabled"
     fwd_ctrl                    = "none"
     has_mcast_source            = "no"
-    is_attr_based_e_pg      = "no"
     match_t                         = "AtleastOne"
-    name_alias                  = "alias_epg"
-    pc_enf_pref                 = "unenforced"
-    pref_gr_memb                = "exclude"
-    prio                            = "unspecified"
-    shutdown                    = "no"
-  }
-
-resource "aci_application_epg" "application_epg2" {
-    application_profile_dn  = "${aci_application_profile.terraform_app.id}"
-    name                            = "web_epg"
-    description                   = "%s"
-    annotation                    = "tag_epg"
-    exception_tag               = "0"
-    flood_on_encap            = "disabled"
-    fwd_ctrl                    = "none"
-    has_mcast_source            = "no"
-    is_attr_based_e_pg      = "no"
-    match_t                         = "AtleastOne"
-    name_alias                  = "alias_epg"
+    name_alias                  = "web"
     pc_enf_pref                 = "unenforced"
     pref_gr_memb                = "exclude"
     prio                            = "unspecified"
@@ -41,21 +19,17 @@ resource "aci_application_epg" "application_epg2" {
   }
 
 
-resource "aci_application_epg" "application_epg3" {
-    application_profile_dn  = "${aci_application_profile.terraform_app.id}"
-    name                            = "backend_epg"
-    description                   = "%s"
-    annotation                    = "tag_epg"
-    exception_tag               = "0"
+resource "aci_application_epg" "db" {
+    application_profile_dn  = "${aci_application_profile.myWebsite.id}"
+    name                            = "db"
+    description                   = "this is the database epg created by terraform"
     flood_on_encap            = "disabled"
     fwd_ctrl                    = "none"
     has_mcast_source            = "no"
-    is_attr_based_e_pg      = "no"
     match_t                         = "AtleastOne"
-    name_alias                  = "alias_epg"
+    name_alias                  = "db"
     pc_enf_pref                 = "unenforced"
     pref_gr_memb                = "exclude"
     prio                            = "unspecified"
     shutdown                    = "no"
   }
-*/

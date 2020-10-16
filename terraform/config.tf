@@ -8,11 +8,8 @@ terraform {
 
 #configure provider with your cisco aci credentials.
 provider "aci" {
-  # cisco-aci user name
   username = "${var.apic_username}"
-  # cisco-aci password
   password = "${var.apic_password}"
-  # cisco-aci url
   url      =  "${var.apic_url}"
   insecure = true
 }
@@ -47,7 +44,7 @@ resource "aci_subnet" "demosubnet" {
   parent_dn                    = "${aci_bridge_domain.bd_for_subnet.id}"
   ip                                  = "172.16.1.1/24"
   scope                               = "private"
-  description                         = "This subject is created by Terraform v3"
+  description                         = "This subject is created by Terraform"
 }
 
 
