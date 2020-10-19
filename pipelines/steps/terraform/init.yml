@@ -5,7 +5,8 @@ steps:
   - bash: |
       $TERRAFORM_BINARY init \
         -input=false \
-        --backend-config="access_key=${AWS_ACCESS_KEY}" --backend-config="secret_key=${AWS_SECRET_KEY}"
+        --backend-config="access_key=${AWS_ACCESS_KEY}" --backend-config="secret_key=${AWS_SECRET_KEY}" \
+        --backend-config="bucket=${AWS_S3_BUCKET_NAME}" --backend-config="region=${AWS_S3_REGION}"
     displayName: Initialize Terraform
     workingDirectory: ${{ parameters.workingDirectory }}
     env:

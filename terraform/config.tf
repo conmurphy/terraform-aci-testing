@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
-    bucket = "azure-devops-terraform-aci-demo-s3-bucket"
+    #bucket = "azure-devops-terraform-aci-demo-s3-bucket"
     key    = "terraform.tfstate"
-    region = "eu-central-1"
+    #region = "eu-central-1"
   }
 }
 
