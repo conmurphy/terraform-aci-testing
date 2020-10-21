@@ -3,22 +3,20 @@ parameters:
   workspace: ""
 
 jobs:
-  - deployment: apply_terraform
+  - job: apply_terraform
     displayName: Apply Terraform
-    environment: ${{ parameters.project }}-${{ parameters.workspace }}
     pool: terraform_aci_laptop
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-            - template: ../../steps/terraform/install.yml
-            - template: ../../steps/terraform/init.yml
+    variables:
+      - group: shared
+    steps:
+      - template: ../../steps/terraform/install.yml
+      - template: ../../steps/terraform/init.yml
 
-            - bash: |
-                $TERRAFORM_BINARY apply \
-                  -input=false \
-                  -auto-approve 
-              displayName: Apply Terraform plan
-              workingDirectory: "$(Build.SourcesDirectory)/terraform"
-              env:
-                TF_VAR_apic_password: $(apic_password)
+      - bash: |
+          $TERRAFORM_BINARY apply \
+            -input=false \
+            -auto-approve 
+        displayName: Apply Terraform plan
+        workingDirectory: "$(Build.SourcesDirectory)/terraform"
+        env:
+          TF_VAR_apic_password: $(apic_password)
